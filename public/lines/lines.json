@@ -1,0 +1,46 @@
+{
+    "Line": [{
+        "Stops": ["Kraljevo", "Čačak", "Požega"],
+        "Type": "double"
+    },
+    {
+        "Stops": ["Kraljevo", "Čačak", "Kragujevac"],
+        "Type": "round"
+    },
+    {
+        "Stops": ["Gornji Milanovac", "Kragujevac", "Lapovo"],
+        "Type": "double"
+    },
+    {
+        "Stops": ["Kraljevo", "Vrnjačka banja", "Trstenik", "Kruševac", "Ćuprija"],
+        "Type": "double"
+    },
+    {
+        "Stops": ["Subotica", "Novi Sad", "Beograd", "Kragujevac", "Ćuprija", "Požarevac", "Vršac", "Kikinda"],
+        "Type": "round"
+    },
+    {
+        "Stops": ["Lapovo", "Velika Plana", "Požarevac"],
+        "Type": "double"
+    },
+    {
+        "Stops": ["Kosovska Mitrovica", "Vranje", "Niš"],
+        "Type": "double"
+    }, 
+    {
+        "Stops": ["Pirot", "Leskovac", "Prokuplje", "Zaječar", "Knjaževac"],
+        "Type": "round"
+    },
+    {
+        "Stops": ["Kraljevo", "Raška", "Novi Pazar", "Ivanjica"],
+        "Type": "round"
+    },
+    {
+        "Stops": ["Sombor", "Bačka Palanka", "Šabac", "Loznica", "Valjevo", "Požega", "Ivanjica"],
+        "Type": "double"
+    },
+    {
+        "Stops": ["Kruševac", "Niš", "Leskovac", "Vranje"],
+        "Type": "double"
+    }]
+}

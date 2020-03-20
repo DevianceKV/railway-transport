@@ -1,0 +1,86 @@
+{% extends 'main/index.html.twig' %}
+
+{% block content %}
+    <div class="container-fluid mt-auto">
+        {% if directRoutes is empty and routesWithChanges is empty and bestRoutes is empty %}
+            <h1 class="alert-danger">There are no lines from {{ fromTo[0] }} to {{ fromTo[1] }}.</h1>
+        {% else %}
+            <div class="container">
+                {% if directRoutes %}     
+                    <h1>Direct Lines</h1>
+                    <table class="table table-bordered table-dark">
+                        <thead>
+                            <tr>
+                                <th scope="col">From</th>
+                                <th scope="col">To</th>
+                                <th scope="col">Line</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for route in directRoutes %}
+                                <tr>
+                                    <td class="font-weight-bold text-success">{{ route[0] }}</td>                    
+                                    <td class="font-weight-bold text-success">{{ route[route|length - 1] }}</td>
+                                    <td>{{ route|join(" - ") }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>    
+                {% else %}
+                    <h1 class="alert-danger">There are no direct lines from  {{ fromTo[0] }} to {{ fromTo[1] }}.</h1>
+                {% endif %}
+            </div>
+            <div class="container">
+                {% if routesWithChanges %}
+                    <h1>Routes with changes</h1>
+                    <table class="table table-bordered table-dark">
+                        <thead>
+                            <tr>
+                                <th scope="col">From</th>
+                                <th scope="col">To</th>
+                                <th scope="col">Part 1</th>
+                                <th scope="col">Part 2</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for route in routesWithChanges %}
+                                <tr>
+                                    <td class="font-weight-bold text-success">{{ route[0][0] }}</td>
+                                    <td class="font-weight-bold text-success">{{ route[1][route[1]|length - 1] }}</td>   
+                                    <td>{{ route[0]|join(" - ") }}</td>                    
+                                    <td>{{ route[1]|join(" - ") }}</td>                      
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% endif %}
+                {% if routesWithChanges is empty and directRoutes is empty %}
+                    <h1>Routes with changes</h1>
+                    <table class="table table-bordered table-dark">
+                        <thead>
+                            <tr>
+                                <th scope="col">From</th>
+                                <th scope="col">To</th>
+                                {% for i in range(1, lengthOfBest)  %}
+                                    <th scope="col">Part {{ i }}</th>
+                                {% endfor %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for route in bestRoutes %}
+                                <tr>
+                                    <td class="font-weight-bold text-success">{{ route[0][0] }}</td>
+                                    <td class="font-weight-bold text-success">{{ route[route|length - 1][route[route|length - 1]|length - 1] }}</td>   
+                                    {% for path in route %}
+                                        <td>{{ path|join(" - ") }}</td>                                
+                                    {% endfor %}                     
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+
+{% endblock %}

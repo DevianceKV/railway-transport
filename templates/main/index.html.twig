@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Rail transport lines service{% endblock %}
+
+{% block body %}
+<div class="example-wrapper">
+    <div class="container-fluid">
+        <h1 class="">Rail transport lines service</h1>
+    </div>
+
+    <div class="container-fluid" style="margin-bottom: 20px">
+        <form class="form-horizontal">
+            <div class="form-row">
+                <div class="col-sm-12">
+                    <label class="col">Choose starting statation:</label>
+                    <div class="col-sm-3">
+                        <select id="from" class="check form-control select2">
+                        <option value="def" selected disabled hidden>From</option>
+                        {% for station in stations %}
+                            {% if fromTo is defined and station == fromTo[0] %}
+                                <option selected >{{ station }}</option>
+                            {% else %}
+                                <option >{{ station }}</option>
+                            {% endif %}
+                        {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <label class="col">Choose end statation:</label>
+                    <div class="col-sm-3">
+                        <select id="to" class="check form-control select2">
+                        <option value="def" selected disabled hidden>To</option>
+                        {% for station in stations %}
+                            {% if fromTo is defined and station == fromTo[1] %}
+                                <option selected >{{ station }}</option>
+                            {% else %}
+                                <option >{{ station }}</option>
+                            {% endif %}
+                        {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    $('.select2').select2();
+
+    $('.check').change(function() {
+        var from = $("#from option:selected").text();
+        var to = $("#to option:selected").text();
+        if (from != "From" && to != "To" && from != to) {
+            var data = "" + from + "-" + to;
+
+            $.ajax({
+                type: "GET",
+                url: "/" + data,
+                data: data,
+                dataType: "text",
+                async:      true,  
+                success: function(msg){
+                    window.location.href = "/" + data;
+                },
+                error : function(xhr, textStatus, errorThrown) {  
+                    alert('Ajax request failed.');  
+                }
+            });
+        }
+    });
+</script>
+{% endblock %}
