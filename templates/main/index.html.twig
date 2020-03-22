@@ -17,7 +17,7 @@
                         <select id="from" class="check form-control select2">
                         <option value="def" selected disabled hidden>From</option>
                         {% for station in stations %}
-                            {% if fromTo is defined and station == fromTo[0] %}
+                            {% if fromTo is defined and fromTo is not null and station == fromTo[0] %}
                                 <option selected >{{ station }}</option>
                             {% else %}
                                 <option >{{ station }}</option>
@@ -32,7 +32,7 @@
                         <select id="to" class="check form-control select2">
                         <option value="def" selected disabled hidden>To</option>
                         {% for station in stations %}
-                            {% if fromTo is defined and station == fromTo[1] %}
+                            {% if fromTo is defined and fromTo is not null and station == fromTo[1] %}
                                 <option selected >{{ station }}</option>
                             {% else %}
                                 <option >{{ station }}</option>
